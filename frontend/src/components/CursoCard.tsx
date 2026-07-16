@@ -8,12 +8,21 @@ interface Props {
 
 export const CursoCard: React.FC<Props> = ({ curso, onDelete }) => {
     return (
-        <div style={{ border: '1px solid #ccc', padding: '10px', margin: '10px 0', borderRadius: '5px' }}>
-            <h3>{curso.nombre}</h3>
+        <article style={{ marginBottom: '20px' }}>
+            <header>
+                <h3 style={{ margin: 0 }}>{curso.nombre}</h3>
+            </header>
             <p><strong>Docente:</strong> {curso.docente}</p>
             <p><strong>Nivel:</strong> {curso.nivel}</p>
             <p><strong>Créditos:</strong> {curso.creditos}</p>
-            <button onClick={() => onDelete(curso.id)} style={{ color: 'red' }}>Eliminar Curso</button>
-        </div>
+            
+            <footer style={{ textAlign: 'right' }}>
+                <button 
+                    onClick={() => onDelete(curso.id)} 
+                    style={{ backgroundColor: '#d32f2f', color: 'white', border: 'none', width: 'auto' }}>
+                    Eliminar
+                </button>
+            </footer>
+        </article>
     );
 };
