@@ -7,19 +7,28 @@ const App: React.FC = () => {
     const { cursos, loading, error, agregarCurso, eliminarCurso } = useCursos();
 
     return (
-        <div style={{ maxWidth: '800px', margin: '0 auto', padding: '20px', fontFamily: 'sans-serif' }}>
-            <h1>Gestión de Cursos - Dirección Académica</h1>
+        <main className="container" style={{ marginTop: '30px' }}>
+            <h1 style={{ textAlign: 'center', marginBottom: '40px' }}>Gestión de Cursos - Dirección Académica</h1>
             
-            {error && <div style={{ color: 'white', backgroundColor: 'red', padding: '10px' }}>{error}</div>}
+            {error && <article style={{ backgroundColor: '#ffcdd2', color: '#b71c1c' }}>{error}</article>}
             
-            <CursoForm onAdd={agregarCurso} />
-            
-            {loading ? (
-                <p>Cargando cursos...</p>
-            ) : (
-                <CursoList cursos={cursos} onDelete={eliminarCurso} />
-            )}
-        </div>
+            {/* Aquí usamos "grid" para dividir en dos columnas */}
+            <div className="grid">
+                {/* Columna Izquierda */}
+                <div>
+                    <CursoForm onAdd={agregarCurso} />
+                </div>
+                
+                {/* Columna Derecha */}
+                <div>
+                    {loading ? (
+                        <p aria-busy="true">Cargando cursos...</p>
+                    ) : (
+                        <CursoList cursos={cursos} onDelete={eliminarCurso} />
+                    )}
+                </div>
+            </div>
+        </main>
     );
 };
 

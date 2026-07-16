@@ -52,6 +52,7 @@ export const useCursos = () => {
             await createCurso(nuevoCurso);
             await cargarCursos(); 
         } catch (err) {
+            console.error(err);
             setError('Error al registrar el curso.');
         }
     };
@@ -61,6 +62,7 @@ export const useCursos = () => {
             await deleteCurso(id);
             await cargarCursos();
         } catch (err) {
+            console.error(err);
             setError('Error al eliminar el curso.');
         }
     };
