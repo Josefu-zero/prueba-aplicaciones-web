@@ -13,7 +13,7 @@ export const useCursos = () => {
         try {
             const data = await getCursos();
             setCursos(data);
-        } catch (err) {
+        } catch {
             setError('Error al obtener los cursos desde el servidor.');
         } finally {
             setLoading(false);
@@ -21,7 +21,30 @@ export const useCursos = () => {
     };
 
     useEffect(() => {
-        cargarCursos();
+        let isMounted = true;
+
+        const cargarDesdeServidor = async () => {
+            try {
+                const data = await getCursos();
+                if (isMounted) {
+                    setCursos(data);
+                }
+            } catch {
+                if (isMounted) {
+                    setError('Error al obtener los cursos desde el servidor.');
+                }
+            } finally {
+                if (isMounted) {
+                    setLoading(false);
+                }
+            }
+        };
+
+        void cargarDesdeServidor();
+
+        return () => {
+            isMounted = false;
+        };
     }, []);
 
     const agregarCurso = async (nuevoCurso: Omit<Curso, 'id'>) => {
