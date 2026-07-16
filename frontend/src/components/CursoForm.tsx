@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Curso } from '../types/Curso';
+import type { Curso } from '../types/Curso';
 
 interface Props {
     onAdd: (curso: Omit<Curso, 'id'>) => void;

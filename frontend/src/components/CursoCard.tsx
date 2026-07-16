@@ -1,5 +1,5 @@
 import React from 'react';
-import { Curso } from '../types/Curso';
+import type { Curso } from '../types/Curso';
 
 interface Props {
     curso: Curso;
